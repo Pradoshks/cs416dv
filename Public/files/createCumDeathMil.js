@@ -49,7 +49,7 @@ d3.select(".tooltip").html("")
   let head7 = 'Human Dev. Index : '
   let head8 = 'Median Age : '
   let head9 = 'Life Expectancy : '
-  let head10 = 'Hospitab Bed/ 1K : '
+  let head10 = 'Hospital Bed/ 1K : '
 
   let continent = dataFilter[0].continent
   let population = dataFilter[0].population
