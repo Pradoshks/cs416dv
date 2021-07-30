@@ -156,7 +156,7 @@ function deathsCumul(svg, usAllData, countries, countryName, data, data_death_mi
     d3.select(".tooltip")
       .html("<strong>Country: </strong>" + countryName[i.id] + "<br/>" +
         "<strong>Total Number of Deaths : </strong>" + d3.format('.3s')(total_deaths) +
-        "</br> <strong>Click for change over time.")
+        "</br> <strong><i>Click for change over time.")
       .style("left", (event.pageX) - 150 + "px")
       .style("top", (event.pageY) - 20 + "px")
   }
