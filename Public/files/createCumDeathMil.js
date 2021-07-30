@@ -152,7 +152,7 @@ d3.select(".tooltip").html("")
         .style("opacity", 1)
       d3.select(".tooltip")
         .html("<strong>Date: </strong>" + formatWeek(d.date_reported) + "<br>" +
-          "<strong>Number of Death Per Million: /<strong>" + d3.format('.0f')(d.new_deaths_per_million))
+          "<strong>Number of Death Per Million: "</strong>" + d3.format('.0f')(d.new_deaths_per_million))
         .style("left", (event.pageX) - 150 + "px")
         .style("top", (event.pageY) - 20 + "px")
     })
