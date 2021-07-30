@@ -140,21 +140,27 @@ function peopleVacc(svg, usAllData, countries, countryName, data, data_rel_pop_v
     people_vaccinated = data.get(countryName[i.id]) || 0
 
     d3.select(".tooltip")
+      .transition()
+      .duration(1000)
       .style("opacity", 1)
-      .html("Country: <b>" + countryName[i.id] + "</b><br/>" + "Total Number of Vaccinations : <b>" + d3.format('.4s')(people_vaccinated) +
-        "</br> Click for change over time.")
+    d3.select(".tooltip")
+      .html("<strong>Country: </strong>" + countryName[i.id] + "<br/>" +
+            "<strong>Total Number of Vaccinations : </strong>" + d3.format('.4s')(people_vaccinated) +
+            "</br><strong><i> Click for change over time.")
       .style("left", (event.pageX) - 150 + "px")
       .style("top", (event.pageY) - 20 + "px")
   }
 
   function mapToolTipClear(d, i) {
-    d3.select(".tooltip").style("opacity", 0)
+    d3.select(".tooltip")
+    .transition()
+    .duration(500)
+    .delay(500)
+    .style('opacity', '0')
   }
 
   function createChart(d, i) {
     people_vaccinated = data.get(countryName[i.id]) || 0
-    // ddd(countryName[i.id], people_vaccinated)
-    // fullyVacc(svg, wordAllData, selectedCountry, selectedvalue)
     fullyVacc(svg, usAllData, countryName[i.id], people_vaccinated)
   }
 
