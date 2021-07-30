@@ -113,25 +113,31 @@ function casesCumulMil(svg, usAllData, countries, countryName, data_cases_mil, d
   const legendTextG = svg.append('g').call(lgendTextAxis)
     .attr('transform', `translate(0,${540})`)
     .selectAll("text")
-    // .attr("x", -12)
-    // .attr("dy", 10)
 
   legendTextG.selectAll('g').select('.tick').attr('opacity', 0)
     .select('line').attr('stroke', '#C0C0BB')
 
   function mapToolTip(d, i) {
     total_cases_per_million = data_cases_mil.get(countryName[i.id]) || 0
-    d3.select(".tooltip").style("opacity", 1)
+    d3.select(".tooltip")
+    .transition()
+    .duration(1000)
+    .style("opacity", 1)
 
-
-      .html("Country: <b>" + countryName[i.id] + "</b><br/>" + "Cases Per Milion People : <b>" + d3.format('.4s')(total_cases_per_million) +
-        "</br> Click for change over time.")
+    d3.select(".tooltip")
+      .html("<strong>Country: </strong>" + countryName[i.id] + "</b><br/>" +
+      "<strong>Cases Per Milion People : </strong>" + d3.format('.4s')(total_cases_per_million) +
+        "</br><i><strong> Click for change over time.")
       .style("left", (event.pageX) - 150 + "px")
       .style("top", (event.pageY) - 20 + "px")
   }
 
   function mapToolTipClear(d, i) {
-    d3.select(".tooltip").style("opacity", 0)
+    d3.select(".tooltip")
+    .transition()
+    .duration(500)
+    .delay(500)
+    .style('opacity', '0')
 
   }
 
