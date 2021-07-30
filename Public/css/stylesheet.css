@@ -1,0 +1,126 @@
+h1 {
+  font-family:sans-serif;
+  /* font-size: 2em; */
+  /* color: steelblue; */
+  fill:#635F5D;
+  display: inline-block;
+  text-align: center;
+  font-size:1.2em
+}
+
+h3, .h3{
+  font-size:1.5em
+}
+
+.finalpage{
+font-size:1.4em
+}
+
+.finaline{
+  font-size:2em
+}
+.head{
+  margin-top: 0px;
+padding-top: 5.5px;
+margin-bottom: 0px
+}
+
+h4 {
+  font-family: monospace;
+  font-size: 2em;
+  text-decoration: underline;
+  display: inline-block;
+}
+
+svg{
+
+}
+body{
+
+  /* overflow : hidden; */
+}
+
+
+.lines{
+  stroke:black;
+  stroke-width:10
+}
+
+.lines path{
+  stroke:#25656d;
+  stroke-linejoin:round
+}
+
+text{
+  font-family:sans-serif
+
+}
+.tick text{
+  font-size:1.25em;
+  fill : #635F5D
+}
+
+.tick line{
+  /* stroke : #C0C0BB */
+}
+
+.axis-label{
+  font-size:2em;
+  fill:#8E8883
+}
+
+.title{
+  font-size:1.5em;
+  fill:#635F5D
+}
+
+.tooltip, .maptooltip{
+  border: 1px outset blue;
+  background-color: white;
+  text-align: center;
+
+}
+
+.daily, .weekly{
+float:right;
+}
+
+.sphere{
+  fill: #4242e4;
+}
+
+.country, .countryd, .countrye{
+  /* fill: lightgreen; */
+  stroke: black;
+  stroke-width:0.5px
+
+}
+.country:hover{
+  fill:#0093d5
+}
+
+.countryd:hover{
+  fill:#c71a1a
+}
+
+.countrye:hover{
+  fill:#238b45
+}
+.card-header, .header{
+  text-align: center;
+  color: #635F5D
+}
+
+/* .header{
+  padding-bottom: 0
+} */
+.leftTitle, .rightTitle{
+  font-size: 0.8em;
+  color:#635F5D
+}
+
+/* .col-lg-10 {
+  height: 600px;
+  width: 980px;
+  background-color: powderblue;
+} */
