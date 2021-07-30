@@ -156,7 +156,7 @@ function casesCumul(svg, usAllData, countries, countryName, data, data_cases_mil
     d3.select(".tooltip")
       .html("<strong>Country: </strong>" + countryName[i.id] + "<br/>" +
         "<strong>Total Number of Cases: </strong>" + d3.format('.4s')(total_cases) +
-        "</br><strong><i> Click for change over time.")
+        "</br><i><strong>Click for change over time.")
       .style("left", (event.pageX) - 110 + "px")
       .style("top", (event.pageY) - 20 + "px")
   }
