@@ -168,7 +168,7 @@ function createCasesCum(svg, wordAllData, selectedCountry, selectedvalue) {
       d3.select(this).
         attr('fill', "#0093d5")
     })
-     .transition()
+    .transition()
     .duration((d,i)=> i*5)
     .delay(200)
     .ease(d3.easeLinear)
