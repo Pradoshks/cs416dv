@@ -29,7 +29,7 @@ function createCumDeathMil(svg, wordAllData, selectedCountry, selectedvalue) {
   const yAxisLabel = 'No. Of Deaths Per Million';
 
   d3.select("svg").html("")
-  d3.select(".tooltip").html("")
+d3.select(".tooltip").html("")
   // d3.select(".leftTitle").select("span").text(selectedCountry);
   // d3.select(".leftTitle").select(".text-muted").text("Total Deaths : "+d3.format('.2f')(selectedvalue));
 
@@ -140,21 +140,36 @@ function createCumDeathMil(svg, wordAllData, selectedCountry, selectedvalue) {
     .data(dataFilter)
     .enter().append('rect')
     .attr('x', d => xScaleWidth(xValue(d)))
-    .attr('y', d => yScale(yValue(d)))
+    .attr('y', yScale(0))
     .attr('width', xScaleWidth.bandwidth())
-    .attr('height', d => innerHeight - yScale(yValue(d)))
+    .attr('height', d => innerHeight - yScale(0))
     .attr('fill', '#c71a1a')
     .on('mouseover', function(event, d) {
       d3.select(this).attr('fill', '#AFADAD')
       d3.select(".tooltip")
+        .transition()
+        .duration(1000)
         .style("opacity", 1)
-        .html("Date: <b>" + formatWeek(d.date_reported) + "</b><br>" +
-          "Number of Death Per Million: <b>" + d3.format('.0f')(d.new_deaths_per_million))
+      d3.select(".tooltip")
+        .html("<strong>Date: </strong>" + formatWeek(d.date_reported) + "<br>" +
+          "<strong>Number of Death Per Million: </<strong>>" + d3.format('.0f')(d.new_deaths_per_million))
         .style("left", (event.pageX) - 150 + "px")
         .style("top", (event.pageY) - 20 + "px")
     })
     .on('mouseout', function(event) {
-      d3.select(".tooltip").html("").attr('opacity', '0')
-      d3.select(this).attr('fill', "#c71a1a")
+      d3.select(".tooltip")
+        .transition()
+        .duration(500)
+        .delay(500)
+        .style('opacity', '0')
+
+      d3.select(this)
+      .attr('fill', "#c71a1a")
     })
+    .transition()
+    .duration((d,i)=> i*5)
+    .delay(200)
+    .ease(d3.easeLinear)
+    .attr('y', d => yScale(yValue(d)))
+    .attr('height', d => innerHeight - yScale(yValue(d)))
 }
