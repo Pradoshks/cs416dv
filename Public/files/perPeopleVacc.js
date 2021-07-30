@@ -17,7 +17,7 @@ function perPeopleVacc(svg, wordAllData, countries, countryName, data_rel_pop_va
   }));
 
   d3.select("svg").html("")
-
+  d3.select(".tooltip").html("")
   svg.append('div').append('input')
   var selectOptions = ["Cumulative Cases", "Cases Per Million"]
 
@@ -113,7 +113,6 @@ function perPeopleVacc(svg, wordAllData, countries, countryName, data_rel_pop_va
     d3.format('.0%')(number)
     .replace('G', 'B')
 
-
   const lgendTextAxis = d3.axisBottom(legendTextScale)
     .tickFormat(legendTextScaleTickFormat)
 
@@ -128,20 +127,28 @@ function perPeopleVacc(svg, wordAllData, countries, countryName, data_rel_pop_va
     people_vaccinated = data_rel_pop_vaccine.get(countryName[i.id]) || 0
 
     d3.select(".tooltip")
+      .transition()
+      .duration(1000)
       .style("opacity", 1)
-      .html("Country: <b>" + countryName[i.id] + "</b><br/>" + "% Of Population Vaccinated: <b>" + d3.format(".2f")(people_vaccinated) + "%")
+    d3.select(".tooltip")
+      .html("<strong>Country: </strong>" + countryName[i.id] + "<br/>" +
+       "<strong>% Of Population Vaccinated: </strong>" + d3.format(".2f")(people_vaccinated) + "%"+
+       "</br> <i><strong>Click for change over time.")
       .style("left", (event.pageX) - 150 + "px")
       .style("top", (event.pageY) - 20 + "px")
   }
 
   function mapToolTipClear(d, i) {
-    d3.select(".tooltip").style("opacity", 0)
+    d3.select(".tooltip")
+    .transition()
+    .duration(500)
+    .delay(500)
+    .style('opacity', '0')
   }
 
   function createChart(d, i) {
     people_vaccinated = data_rel_pop_vaccine.get(countryName[i.id]) || 0
     perPeopFullyVac(svg, wordAllData, countryName[i.id], people_vaccinated)
-    // ddd(countryName[i.id], people_vaccinated)
   }
 
   function setColor(d, i) {
