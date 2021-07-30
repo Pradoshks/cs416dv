@@ -150,16 +150,23 @@ function deathsCumul(svg, usAllData, countries, countryName, data, data_death_mi
     total_deaths = data.get(countryName[i.id]) || 0
 
     d3.select(".tooltip")
+      .transition()
+      .duration(1000)
       .style("opacity", 1)
-      .html("Country: <b>" + countryName[i.id] + "</b><br/>" +
-        "Total Number of Deaths : <b>" + d3.format('.3s')(total_deaths) +
-        "</br> Click for change over time.")
+    d3.select(".tooltip")
+      .html("<strong>Country: </strong>" + countryName[i.id] + "<br/>" +
+        "<strong>Total Number of Deaths : </strong>" + d3.format('.3s')(total_deaths) +
+        "</br> <strong>Click for change over time.")
       .style("left", (event.pageX) - 150 + "px")
       .style("top", (event.pageY) - 20 + "px")
   }
 
   function mapToolTipClear(d, i) {
-    d3.select(".tooltip").style("opacity", 0)
+    d3.select(".tooltip")
+    .transition()
+    .duration(500)
+    .delay(500)
+    .style('opacity', '0')
   }
 
   function createChart(d, i) {
@@ -199,17 +206,6 @@ function deathsCumul(svg, usAllData, countries, countryName, data, data_death_mi
     dx: -100
   }]
 
-  // const annotation3 = [{
-  //   note: {
-  //     label: "India broke record number of cases per day with 400k+ in May '21'. ",
-  //     title: "3) Where it went wrong?"
-  //   },
-  //   x: 660,
-  //   y: 300,
-  //   dy: 130,
-  //   dx: -80
-  // }]
-
   // Add annotation to the chart
 
   const makeAnnotations1 = d3.annotation()
@@ -223,11 +219,4 @@ function deathsCumul(svg, usAllData, countries, countryName, data, data_death_mi
   d3.select("g")
     .append("g")
     .call(makeAnnotations2)
-
-  // const makeAnnotations3 = d3.annotation()
-  //   .annotations(annotation3)
-  // d3.select("g")
-  //   .append("g")
-  //   .call(makeAnnotations3)
-
 }
