@@ -17,6 +17,7 @@ function peopleVacc(svg, usAllData, countries, countryName, data, data_rel_pop_v
   }));
 
   d3.select("svg").html("")
+  d3.select(".tooltip").html("")
   d3.select(".leftTitle").select("span").html("");
   d3.select(".leftTitle").select(".text-muted").text("")
   d3.select(".rightTitle").select(".text-muted").text("")
