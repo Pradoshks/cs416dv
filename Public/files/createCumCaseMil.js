@@ -29,7 +29,7 @@ function createCumCaseMil(svg, wordAllData, selectedCountry, selectedvalue) {
   const yAxisLabel = 'No. Of Cases Per Million';
 
   d3.select("svg").html("")
-
+  d3.select(".tooltip").html("")
   d3.select(".leftTitle").text("")
 
 
