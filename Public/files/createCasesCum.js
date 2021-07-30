@@ -148,15 +148,30 @@ function createCasesCum(svg, wordAllData, selectedCountry, selectedvalue) {
     .attr('fill', '#0093d5')
     .on('mouseover', function(event, d) {
       d3.select(this).attr('fill', '#AFADAD')
-      d3.select(".tooltip")
-        .style("opacity", 1)
-        .html("Date: <b>" + formatWeek(d.date_reported) + "</b><br>" +
-          "Number of Cases: <b>" + d3.format(",")(d.new_cases))
-        .style("left", (event.pageX) - 150 + "px")
-        .style("top", (event.pageY) - 20 + "px")
+        d3.select(".tooltip")
+          .transition()
+          .duration(1000)
+          .style("opacity", 1)
+        d3.select(".tooltip")
+          .html("<strong>Date: </strong>" + formatWeek(d.date_reported) + "<br>"
+          +"<strong>Number of Cases: </strong>" + d3.format(",")(d.new_cases))
+          .style("left", (event.pageX) - 150 + "px")
+          .style("top", (event.pageY) - 20 + "px")
     })
     .on('mouseout', function(event) {
-      d3.select(".tooltip").html("")
-      d3.select(this).attr('fill', "#0093d5")
+      d3.select(".tooltip")
+        .transition()
+        .duration(500)
+        .delay(500)
+        .style('opacity', '0')
+
+      d3.select(this).
+        attr('fill', "#0093d5")
     })
+     .transition()
+    .duration((d,i)=> i*5)
+    .delay(200)
+    .ease(d3.easeLinear)
+    .attr('y', d => yScale(yValue(d)))
+    .attr('height', d => innerHeight - yScale(yValue(d)))
 }
