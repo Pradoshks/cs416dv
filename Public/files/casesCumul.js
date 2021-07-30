@@ -27,7 +27,7 @@ function casesCumul(svg, usAllData, countries, countryName, data, data_cases_mil
   text1c = `, its first such designation since declaring H1N1 influenza a pandemic in 2009.
   It has spread to almost every country and territory around the world, infecting millions of people and devastating the global economy. `
 
-  text2 = 'As of today, the number of COVID-19 cases worldwide had reached over 195 million.'
+  text2 = 'As of today, the number of COVID-19 cases worldwide has reached over 195 million.'
   text3 = 'This chart provides current picture of the cases and cases per million people who were infected. Click on the buttons above to navigate to slides.'
   text4 = 'How to interact with the Chart: '
   text5 = 'Hover over the chart to see more details or click on countries to see how they arrived here. Scroll on the map to Zoom in or Out.'
