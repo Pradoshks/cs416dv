@@ -150,6 +150,13 @@ function casesCumul(svg, usAllData, countries, countryName, data, data_cases_mil
 
     d3.select(".tooltip")
       .style("opacity", 1)
+   
+    d3.select(".tooltip")
+      .html("Country: <b>" + countryName[i.id] + "</b><br/>" +
+        "Total Number of Cases : <b>" + d3.format('.4s')(total_cases) +
+        "</br> Click for change over time.")
+      .style("left", (event.pageX) - 110 + "px")
+      .style("top", (event.pageY) - 20 + "px")
       .html("Country: <b>" + countryName[i.id] + "</b><br/>" +
         "Total Number of Cases : <b>" + d3.format('.4s')(total_cases) +
         "</br> Click for change over time.")
@@ -158,7 +165,11 @@ function casesCumul(svg, usAllData, countries, countryName, data, data_cases_mil
   }
 
   function mapToolTipClear(d, i) {
-    d3.select(".tooltip").html("").attr('opacity', '0')
+     d3.select(".tooltip")
+    .transition()
+    .duration(500)
+    .delay(500)
+    .style('opacity', '0')
   }
 
   function createChart(d, i) {
