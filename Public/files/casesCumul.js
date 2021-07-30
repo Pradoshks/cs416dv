@@ -159,11 +159,6 @@ function casesCumul(svg, usAllData, countries, countryName, data, data_cases_mil
         "</br><strong><i> Click for change over time.")
       .style("left", (event.pageX) - 110 + "px")
       .style("top", (event.pageY) - 20 + "px")
-      .html("Country: <b>" + countryName[i.id] + "</b><br/>" +
-        "Total Number of Cases : <b>" + d3.format('.4s')(total_cases) +
-        "</br> Click for change over time.")
-      .style("left", (event.pageX) - 110 + "px")
-      .style("top", (event.pageY) - 20 + "px")
   }
 
   function mapToolTipClear(d, i) {
