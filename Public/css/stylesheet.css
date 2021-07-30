@@ -78,6 +78,8 @@ text{
   border: 1px outset blue;
   background-color: white;
   text-align: center;
+  border-radius: 8px;
+  color:#635F5D
 
 }
 
