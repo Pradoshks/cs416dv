@@ -16,6 +16,7 @@ function weekGrowth(svg, usAllData, countries, countryName, data) {
   }));
 
   d3.select("svg").html("")
+  d3.select(".tooltip").html("")
   d3.select(".leftTitle").select("span").html("");
   d3.select(".leftTitle").select(".text-muted").text("")
   d3.select(".rightTitle").select(".text-muted").text("")
@@ -41,13 +42,13 @@ function weekGrowth(svg, usAllData, countries, countryName, data) {
     .domain(caseRange)
     .range(d3.schemeBuPu[7]);
 
-    d3.select(".card-heading")
-      .select('text')
-      .remove()
+  d3.select(".card-heading")
+    .select('text')
+    .remove()
 
-    d3.select(".card-heading")
-      .append('text')
-      .text("Where are confirmed cases increasing or falling?")
+  d3.select(".card-heading")
+    .append('text')
+    .text("Where are confirmed cases increasing or falling?")
 
   mapG = g.append('g').selectAll('path')
     .data(countries)
@@ -72,7 +73,7 @@ function weekGrowth(svg, usAllData, countries, countryName, data) {
     .attr('width', 50)
     .attr('fill', d => colorScale(d))
     .attr('stroke', 'black')
-    .attr('class', (d,i) => 'rect'+i)
+    .attr('class', (d, i) => 'rect' + i)
 
   d3.select('.rect7').remove()
   d3.select('.rect6').remove()
@@ -114,18 +115,25 @@ function weekGrowth(svg, usAllData, countries, countryName, data) {
     .select('line').attr('stroke', '#C0C0BB')
 
   function mapToolTip(d, i) {
-  Weekly_case_growth = data.get(countryName[i.id]) || 0
+    Weekly_case_growth = data.get(countryName[i.id]) || 0
 
     d3.select(".tooltip")
+      .transition()
+      .duration(1000)
       .style("opacity", 1)
-      .html("Country: <b>" + countryName[i.id] + "</b><br/>" +
-            "% Growth since last Week : <b>" + d3.format(".2f")(Weekly_case_growth) +"%")
+    d3.select(".tooltip")
+      .html("<strong>Country: </strong>" + countryName[i.id] + "<br/>" +
+        "<strong>% Growth since last Week: </strong>" + d3.format(".2f")(Weekly_case_growth) + "%")
       .style("left", (event.pageX) - 150 + "px")
       .style("top", (event.pageY) - 20 + "px")
   }
 
   function mapToolTipClear(d, i) {
-    d3.select(".tooltip").style("opacity", 0)
+    d3.select(".tooltip")
+      .transition()
+      .duration(500)
+      .delay(500)
+      .style('opacity', '0')
   }
 
   function createChart(d, i) {
@@ -139,5 +147,4 @@ function weekGrowth(svg, usAllData, countries, countryName, data) {
       return 'lightgrey'
     return colorScale(Weekly_case_growth)
   }
-
 }
