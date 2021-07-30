@@ -29,7 +29,7 @@ function createCumDeathMil(svg, wordAllData, selectedCountry, selectedvalue) {
   const yAxisLabel = 'No. Of Deaths Per Million';
 
   d3.select("svg").html("")
-
+  d3.select(".tooltip").html("")
   // d3.select(".leftTitle").select("span").text(selectedCountry);
   // d3.select(".leftTitle").select(".text-muted").text("Total Deaths : "+d3.format('.2f')(selectedvalue));
 
