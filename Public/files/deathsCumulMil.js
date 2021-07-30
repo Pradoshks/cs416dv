@@ -16,6 +16,7 @@ function deathsCumulMil(svg, usAllData, countries, countryName, data_death_mil, 
   }));
 
   d3.select("svg").html("")
+  d3.select(".tooltip").html("")
   d3.select(".leftTitle").select("span").html("");
   d3.select(".leftTitle").select(".text-muted").text("")
 
@@ -135,20 +136,27 @@ function deathsCumulMil(svg, usAllData, countries, countryName, data_death_mil, 
     total_deaths = data_death_mil.get(countryName[i.id]) || 0
 
     d3.select(".tooltip")
+      .transition()
+      .duration(1000)
       .style("opacity", 1)
-      .html("Country: <b>" + countryName[i.id] + "</b><br/>" + "Deaths Per Million People: <b>" + d3.format('.0s')(total_deaths) +
-        "</br> Click for change over time.")
+    d3.select(".tooltip")
+      .html("<strong>Country: </strong>" + countryName[i.id] + "<br/>" +
+        "<strong>Deaths Per Million People: </strong>" + d3.format('.0s')(total_deaths) +
+        "</br> <i><strong>Click for change over time.")
       .style("left", (event.pageX) - 150 + "px")
       .style("top", (event.pageY) - 20 + "px")
   }
 
   function mapToolTipClear(d, i) {
-    d3.select(".tooltip").style("opacity", 0)
+    d3.select(".tooltip")
+      .transition()
+      .duration(500)
+      .delay(500)
+      .style('opacity', '0')
   }
 
   function createChart(d, i) {
     total_deaths = data_death_mil.get(countryName[i.id]) || 0
-    // ddd(countryName[i.id], total_deaths)
     createCumDeathMil(svg, usAllData, countryName[i.id], total_deaths)
   }
 
@@ -182,14 +190,6 @@ function deathsCumulMil(svg, usAllData, countries, countryName, data_death_mil, 
     dx: 100
   }]
 
-  // Add annotation to the chart
-  //
-  // const makeAnnotations1 = d3.annotation()
-  //   .annotations(annotation1)
-  // d3.select("g")
-  //   .append("g")
-  //   .call(makeAnnotations1)
-
   const makeAnnotations1 = d3.annotation()
     .annotations(annotation1)
   d3.select("g")
@@ -201,7 +201,5 @@ function deathsCumulMil(svg, usAllData, countries, countryName, data_death_mil, 
   d3.select("g")
     .append("g")
     .call(makeAnnotations2)
-
-  // vaccination
 
 }
