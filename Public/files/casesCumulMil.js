@@ -63,8 +63,6 @@ function casesCumulMil(svg, usAllData, countries, countryName, data_cases_mil, d
     .on('mouseover', mapToolTip)
     .on('mouseout', mapToolTipClear)
     .on('click', createChart)
-    .append('title')
-    .text(d => countryName[d.id])
 
   legendG = svg.append('g').selectAll('rect')
     .data(caseRange)
