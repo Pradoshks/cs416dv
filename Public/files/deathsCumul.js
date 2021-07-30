@@ -26,7 +26,7 @@ function deathsCumul(svg, usAllData, countries, countryName, data, data_death_mi
   text1b = ` However, new variants are emerging and they seem to be more infectious/ deadly than the previous variants. Now, young people are vulnerable too.`
   text1c = ` It has spread to almost every country and territory around the world, killing millions of people and their loved ones. `
 
-  text2 = 'As today, the number of COVID-19 deaths worldwide had reached over 4.2 million.'
+  text2 = 'As today, the number of COVID-19 deaths worldwide has reached over 4.2 million.'
   text3 = 'This chart provides current picture of the deaths and deaths per million people who were infected. Click on the buttons above to navigate to slides.'
   text4 = 'How to interact with the Chart: '
   text5 = 'Hover over the chart to see more details or click on countries to see how they arrived here. Scroll on the map to Zoom in or Out.'
