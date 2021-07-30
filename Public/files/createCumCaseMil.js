@@ -135,25 +135,40 @@ function createCumCaseMil(svg, wordAllData, selectedCountry, selectedvalue) {
 
   rectG = g.append('g')
 
-  rectG.selectAll('rect')
-    .data(dataFilter)
-    .enter().append('rect')
-    .attr('x', d => xScaleWidth(xValue(d)))
-    .attr('y', d => yScale(yValue(d)))
-    .attr('width', xScaleWidth.bandwidth())
-    .attr('height', d => innerHeight - yScale(yValue(d)))
-    .attr('fill', '#0093d5')
-    .on('mouseover', function(event, d) {
+rectG.selectAll('rect')
+  .data(dataFilter)
+  .enter().append('rect')
+  .attr('x', d => xScaleWidth(xValue(d)))
+  .attr('y', yScale(0))
+  .attr('width', xScaleWidth.bandwidth())
+  .attr('height', innerHeight - yScale(0))
+  .attr('fill', '#0093d5')
+  .on('mouseover', function(event, d) {
       d3.select(this).attr('fill', '#AFADAD')
       d3.select(".tooltip")
+        .transition()
+        .duration(1000)
         .style("opacity", 1)
-        .html("Date: <b>" + formatWeek(d.date_reported) + "</b><br>" +
-          "Number of Cases Per Million: <b>" + d3.format('.0f')(d.new_cases_per_million))
+      d3.select(".tooltip")
+        .html("<strong>Date: </strong>" + formatWeek(d.date_reported) + "<br>" +
+          "<strong>Number of Cases Per Million: </strong>" + d3.format('.0f')(d.new_cases_per_million))
         .style("left", (event.pageX) - 150 + "px")
         .style("top", (event.pageY) - 20 + "px")
     })
     .on('mouseout', function(event) {
-      d3.select(".tooltip").html("")
-      d3.select(this).attr('fill', "#0093d5")
+      d3.select(".tooltip")
+        .transition()
+        .duration(500)
+        .delay(500)
+        .style('opacity', '0')
+
+      d3.select(this).
+        attr('fill', "#0093d5")
     })
+    .transition()
+    .duration((d,i)=> i*5)
+    .delay(200)
+    .ease(d3.easeLinear)
+    .attr('y', d => yScale(yValue(d)))
+    .attr('height', d => innerHeight - yScale(yValue(d)))
 }
