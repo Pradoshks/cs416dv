@@ -149,6 +149,8 @@ function casesCumul(svg, usAllData, countries, countryName, data, data_cases_mil
     total_cases = data.get(countryName[i.id]) || 0
 
     d3.select(".tooltip")
+      .transition()
+      .duration(1000)
       .style("opacity", 1)
    
     d3.select(".tooltip")
