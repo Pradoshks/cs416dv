@@ -140,21 +140,36 @@ function fullyVacc(svg, wordAllData, selectedCountry, selectedvalue) {
     .data(dataFilter)
     .enter().append('rect')
     .attr('x', d => xScaleWidth(xValue(d)))
-    .attr('y', d => yScale(yValue(d)))
+    .attr('y', yScale(0))
     .attr('width', xScaleWidth.bandwidth())
-    .attr('height', d => innerHeight - yScale(yValue(d)))
+    .attr('height', innerHeight - yScale(0))
     .attr('fill', '#238b45')
     .on('mouseover', function(event, d) {
       d3.select(this).attr('fill', '#AFADAD')
       d3.select(".tooltip")
+        .transition()
+        .duration(1000)
         .style("opacity", 1)
-        .html("Date: <b>" + formatWeek(d.date_reported) + "</b><br>" +
-          "Number People Fully Vaccinated: <b>" + d3.format(',')(d.new_vaccinations))
+      d3.select(".tooltip")
+        .html("Date: <strong>" + formatWeek(d.date_reported) + "</strong><br>" +
+          "<strong>Number People Fully Vaccinated: </strong>" + d3.format(',')(d.new_vaccinations))
         .style("left", (event.pageX) - 150 + "px")
         .style("top", (event.pageY) - 20 + "px")
     })
     .on('mouseout', function(event) {
-      d3.select(".tooltip").html("")
-      d3.select(this).attr('fill', "#238b45")
+      d3.select(".tooltip")
+        .transition()
+        .duration(500)
+        .delay(500)
+        .style('opacity', '0')
+
+      d3.select(this).
+      attr('fill', "#0093d5")
     })
+    .transition()
+    .duration((d, i) => i * 5)
+    .delay(200)
+    .ease(d3.easeLinear)
+    .attr('y', d => yScale(yValue(d)))
+    .attr('height', d => innerHeight - yScale(yValue(d)))
 }
