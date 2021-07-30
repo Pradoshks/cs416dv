@@ -47,7 +47,7 @@ function createDeathChart(svg, wordAllData, selectedCountry, selectedvalue, call
   let head7 = 'Human Dev. Index : '
   let head8 = 'Median Age : '
   let head9 = 'Life Expectancy : '
-  let head10 = 'Hospitab Bed/ 1K : '
+  let head10 = 'Hospital Bed/ 1K : '
 
   let continent = dataFilter[0].continent
   let population = dataFilter[0].population
@@ -138,21 +138,36 @@ function createDeathChart(svg, wordAllData, selectedCountry, selectedvalue, call
     .data(dataFilter)
     .enter().append('rect')
     .attr('x', d => xScaleWidth(xValue(d)))
-    .attr('y', d => yScale(yValue(d)))
+    .attr('y', yScale(0))
     .attr('width', xScaleWidth.bandwidth())
-    .attr('height', d => innerHeight - yScale(yValue(d)))
+    .attr('height', d => innerHeight - yScale(0))
     .attr('fill', '#c71a1a')
     .on('mouseover', function(event, d) {
       d3.select(this).attr('fill', '#AFADAD')
       d3.select(".tooltip")
+        .transition()
+        .duration(1000)
         .style("opacity", 1)
-        .html("Date: <b>" + formatWeek(d.date_reported) + "</b><br>" +
-          "Number of Deaths: <b>" + d3.format(",")(d.new_deaths))
+      d3.select(".tooltip")
+        .html("<strong>Date: </strong>" + formatWeek(d.date_reported) + "<br>" +
+          "<strong>Number of Deaths: </strong>" + d3.format(",")(d.new_deaths))
         .style("left", (event.pageX) - 150 + "px")
         .style("top", (event.pageY) - 20 + "px")
     })
     .on('mouseout', function(event) {
-      d3.select(".tooltip").html("")
-      d3.select(this).attr('fill', "#c71a1a")
+      d3.select(".tooltip")
+        .transition()
+        .duration(500)
+        .delay(500)
+        .style('opacity', '0')
+
+      d3.select(this)
+      .attr('fill', "#c71a1a")
     })
+    .transition()
+    .duration((d,i)=> i*5)
+    .delay(200)
+    .ease(d3.easeLinear)
+    .attr('y', d => yScale(yValue(d)))
+    .attr('height', d => innerHeight - yScale(yValue(d)))
 }
