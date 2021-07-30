@@ -164,7 +164,7 @@ function fullyVacc(svg, wordAllData, selectedCountry, selectedvalue) {
         .style('opacity', '0')
 
       d3.select(this).
-      attr('fill', "#0093d5")
+      attr('fill', "#238b45")
     })
     .transition()
     .duration((d, i) => i * 5)
